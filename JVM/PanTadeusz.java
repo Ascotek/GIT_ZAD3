@@ -10,17 +10,6 @@ import java.util.Map;
 
 public class PanTadeusz {
     public static void main(String[] args) {
-
-
-
-
-
-
-
-
-
-
-
     }
     public static int zlicz(String szukanyTekst){
     int licznik = 0;

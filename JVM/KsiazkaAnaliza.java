@@ -9,12 +9,18 @@ import java.util.*;
 public class KsiazkaAnaliza {
     String tekst = "";
     String [] rozSlowa;
+    String rozLinie;
+    String []rozTekst;
     String filePath = "C:\\Users\\UltraGroup\\Desktop\\tekst\\PanTadeusz.txt";
     BufferedReader inputFile = null;
     int numberOfLines = 0;
     String linia;
 
     Map<String, Integer> mapaSlow = new HashMap<>();
+
+
+
+
     Map<String, Integer> slowaPosortowane = new HashMap<>();
 
 
@@ -33,8 +39,11 @@ public class KsiazkaAnaliza {
                 }
                 //System.out.println(linia);
 
+
                 tekst+=" ";
                 tekst+=linia;
+                rozLinie+="\n";
+                rozLinie+=linia;
                 numberOfLines++;
             }
             System.out.println(tekst);
@@ -45,7 +54,9 @@ public class KsiazkaAnaliza {
             if(inputFile != null){
                 inputFile.close();
             }
-            rozSlowa = tekst.split("[? !,.:; ]");
+
+            tekst = tekst.toLowerCase();                    //ignorowanie wielkich liter
+            rozSlowa = tekst.split("[? *!,.:; ]");
 
             for(String slowo: rozSlowa){
                 System.out.println(slowo);
@@ -80,6 +91,14 @@ public class KsiazkaAnaliza {
             System.out.println(klucz + ":" + wartosc);
 
         }
+        //System.out.println(rozLinie);
+        rozLinie = rozLinie.replaceAll("[? !,.:; ]", "");
+        rozTekst=rozLinie.split("\n");
+
+        for(String slowo: rozTekst){
+            System.out.println(slowo);
+        }
+
     }
     public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
         List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
